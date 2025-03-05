@@ -10,7 +10,7 @@ export default function HomeSection() {
   }
 
   return (
-    <div className='w-[78vw] relative left-[20vw] h-full flex flex-col gap-10 overflow-y-scroll pb-[10px]'>
+    <div className='w-[78vw] relative left-[21vw] h-full flex flex-col gap-10 overflow-y-scroll pb-[10px]'>
       <div className='text-3xl font-bold'>Welcome user,</div>
       <div className='text-xl font-bold'>Website visits this month 1,500</div>
 

@@ -11,7 +11,7 @@ export default function ManageEvents() {
   }
 
   return (
-    <div className='w-[78vw] relative left-[20vw] h-full flex flex-col gap-10 overflow-y-scroll pb-[10px]'>
+    <div className='w-[78vw] relative left-[21vw] h-full flex flex-col gap-10 overflow-y-scroll pb-[10px]'>
       <SectionTitle title="Manage events" />
       {/* Upcoming event section */}
       <div className='flex flex-col overflow-hidden w-[97%] min-h-[300px] gap-y-4'>

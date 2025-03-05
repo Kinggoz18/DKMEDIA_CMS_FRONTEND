@@ -1,5 +1,7 @@
 
 export default interface ArticleProps {
+  _id?: string;
   title: string;
-  ArticleLink: string;
+  articleLink: string;
+  onDeleteClick?: () => void;
 }
