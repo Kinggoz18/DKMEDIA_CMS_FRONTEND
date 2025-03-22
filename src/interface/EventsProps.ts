@@ -1,10 +1,13 @@
+import { EventPriority } from "../enums/eventPriority";
 import OrganizerProps from "./OrganizerProps";
 
 export default interface EventsProps {
+  _id?: string;
   title: string;
   date: string;
   image: string;
-  priority: string;
+  priority: EventPriority;
   organizer: OrganizerProps;
   isUpcoming: boolean;
+  onDeleteClick?: () => void;
 }

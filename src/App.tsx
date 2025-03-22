@@ -5,18 +5,22 @@ import { JSX } from 'react'
 import Home from './pages/Protected/Home'
 import ProtectedRoutes from './pages/ProtectedRoutes'
 import Notfound404 from './pages/404Page'
+import { Provider } from 'react-redux'
+import rootStore from './redux/rootStore'
 
 function App(): JSX.Element {
 
   return (
-    <Routes>
-      <Route path="/login" element={<Login />}></Route>
+    <Provider store={rootStore}>
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Home />}></Route>
+        </Route>
+        <Route path="*" element={<Notfound404 />} />
+      </Routes>
+    </Provider>
 
-      <Route element={<ProtectedRoutes />}>
-        <Route path="/" element={<Home />}></Route>
-      </Route>
-      <Route path="*" element={<Notfound404 />} />
-    </Routes>
   )
 }
 

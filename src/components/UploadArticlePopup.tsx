@@ -1,15 +1,68 @@
 import { useState } from "react"
 import PrimaryButton from "./PrimaryButton";
 import UploadArticleProps from "../interface/UploadArticleProps";
+import IArticle from "../interface/Redux/IArticle";
 
 export default function UploadArticlePopup(props: UploadArticleProps) {
-  const { closePopup } = props;
+  const { closePopup,
+    setIsUploading,
+    handleThrowError,
+    fetchArticles,
+    articleService, } = props;
+
   const [articleTitle, setArticleTitle] = useState("");
   const [articleLink, setArticleLink] = useState("");
 
-  function onUploadClick() {
+  /**
+   * Upload the article
+   * @returns 
+   */
+  async function onUploadClick() {
+    if (!articleTitle && !articleLink) {
+      return handleThrowError("Please fill in all the required filleds.")
+    } else {
+      try {
+        if (!isValidURL(articleLink)) {
+          return handleThrowError("Please enter a valid url")
+        }
+
+        setIsUploading(true)
+        const data: IArticle = {
+          title: articleTitle,
+          link: articleLink,
+        }
+        const newOrganizer = await articleService.addArticle(data);
+        if (!newOrganizer || !newOrganizer?._id) {
+          throw new Error("Something went wrong while uploading the media")
+        }
+
+        setArticleTitle("")
+        setArticleLink("")
+        setIsUploading(false);
+        await fetchArticles();
+        closePopup()
+      } catch (error: any) {
+        handleThrowError(error?.message ?? error);
+        setArticleTitle("")
+        setArticleLink("")
+        setIsUploading(false);
+        closePopup()
+      }
+    }
     console.log("Uploading article")
     closePopup()
+  }
+
+  /**
+   * Check if the url is valid
+   */
+  function isValidURL(input: string) {
+    try {
+      new URL(input);
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 
   return (
@@ -37,7 +90,7 @@ export default function UploadArticlePopup(props: UploadArticleProps) {
         />
       </div>
 
-      <PrimaryButton title="Upload" onBtnClick={onUploadClick} className="place-self-center bg-primary-500 !text-neutral-100" />
+      <PrimaryButton title="Upload" onBtnClick={onUploadClick} className="place-self-center bg-primary-500 !text-neutral-100 rounded-xl" />
     </div>
   )
 }

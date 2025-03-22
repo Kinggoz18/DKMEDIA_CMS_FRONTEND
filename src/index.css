@@ -3,6 +3,16 @@
 @theme {
   --color-background: oklch(23.5% 0 0);
   --color-primary-500: oklch(49.96% 0.2019 28.89);
+
+  --animate-spin-slow: spin 2s linear infinite;
+}
+
+  /************************************************* {Animation keyframes} *************************************************/
+@keyframes spin {
+  0%,
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 :root {

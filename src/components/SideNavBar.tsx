@@ -3,15 +3,39 @@ import dkMediaLogo from "../assets/dkMediaLogo.png";
 import SideNavbarOptions from "./SideNavbarOptions";
 import NavBarProps from "../interface/NavBarProps";
 import { useNavigate } from "react-router";
+import { LogoutUser } from "../redux/Auth/AuthSlice";
+import { useDispatch } from "react-redux";
+
+interface NabarOptions {
+  title: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+interface SectionProps {
+  options: NabarOptions[]
+}
+
+/**
+ * Render the side navbar options
+ * @returns 
+ */
+function RenderSections(props: SectionProps): JSX.Element[] {
+  const { options } = props;
+  return options.map((section, index) => (
+    <SideNavbarOptions key={index} title={section.title} isActive={section.isActive} onClick={section.onClick} />
+  ))
+}
 
 export function SideNavBar(props: NavBarProps): JSX.Element {
   const { currentPage, setCurrentPage } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   /**
    * Side navbar options
    */
-  const options = [
+  const options: NabarOptions[] = [
     {
       title: "Manage events",
       isActive: currentPage === "Manage events" ? true : false,
@@ -47,6 +71,20 @@ export function SideNavBar(props: NavBarProps): JSX.Element {
         setCurrentPage("Manage contact us")
       }
     },
+    {
+      title: "About us",
+      isActive: currentPage === "About us" ? true : false,
+      onClick: () => {
+        setCurrentPage("About us")
+      }
+    },
+    {
+      title: "Subscription",
+      isActive: currentPage === "Subscription" ? true : false,
+      onClick: () => {
+        setCurrentPage("Subscription")
+      }
+    }
   ]
 
   /**
@@ -58,32 +96,22 @@ export function SideNavBar(props: NavBarProps): JSX.Element {
     }
   }
 
-
   /**
    * Navigate back to the home page
    */
-  const onLogoutClick = () => {
+  const onLogoutClick = async () => {
+    dispatch(LogoutUser());
     navigate("/login")
 
   }
 
 
-  /**
-   * Render the side navbar options
-   * @returns 
-   */
-  function RenderSections(): JSX.Element[] {
-    return options.map((section, index) => (
-      <SideNavbarOptions key={index} title={section.title} isActive={section.isActive} onClick={section.onClick} />
-    ))
-  }
-
   return (
-    <div className="min-w-[200px] w-[20vw] h-full absolute overflow-hidden bg-neutral-200 top-0 left-0 flex flex-col py-4 z-10">
+    <div className="min-w-[200px] w-[20vw] h-full absolute overflow-hidden bg-neutral-200 top-0 left-0 flex flex-col py-4 z-20">
       <img src={dkMediaLogo} alt="" className="w-[80%] relative cursor-pointer" onClick={onLogoClick} />
 
-      <div className="flex flex-col mt-[120px] relative" >
-        <RenderSections />
+      <div className="flex flex-col mt-[50px] relative" >
+        <RenderSections options={options} />
       </div>
 
       <div onClick={onLogoutClick} className="absolute bottom-0 text-neutral-900 cursor-pointer text-lg font-bold  py-8 px-4 hover:bg-neutral-600 hover:text-neutral-200 w-full">Logout</div>

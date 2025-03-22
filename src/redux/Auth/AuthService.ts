@@ -1,0 +1,46 @@
+import axios from "axios";
+import { IResponse } from "../../interface/IResponse";
+import IUserSlice from "../../interface/Redux/IUserSlice";
+
+const BACKEND_URL = import.meta.env.VITE_API_URL;
+
+export class AuthService {
+  apiUrl: string;
+
+  constructor() {
+    this.apiUrl = `${BACKEND_URL}/auth`;
+  }
+
+  /**
+   * Login or signup a user
+   * @param mode signup/login
+   * @param signupCode Signup code
+   */
+  async authenticateUser(mode: string, signupCode?: string) {
+    try {
+      if (mode === "signup") {
+        window.location.href = `${this.apiUrl}/google/callback?mode=${mode}&signupCode=${signupCode}`;
+      } else if (mode === "login") {
+        window.location.href = `${this.apiUrl}/google/callback?mode=${mode}`;
+      } else {
+        throw new Error("Invalid signup mode")
+      }
+    } catch (error: any) {
+      throw new Error(error.message)
+    }
+  }
+
+  async getAuthenticatedUser(userId: string) {
+    try {
+      const response = (await axios.get(`${this.apiUrl}/${userId}`)).data as IResponse;
+      console.log({ response })
+      if (!response.success) {
+        throw new Error(response.data);
+      }
+      return response?.data as IUserSlice;
+    } catch (error: any) {
+      console.log({ error })
+      throw new Error(error.message)
+    }
+  }
+}
