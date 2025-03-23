@@ -27,7 +27,7 @@ class EventService {
       return response.data as IEvent;
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -43,7 +43,7 @@ class EventService {
       return response.data as string;
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -59,7 +59,7 @@ class EventService {
       return response.data as [IEvent];
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -75,7 +75,7 @@ class EventService {
       return response.data as IEvent
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -91,7 +91,7 @@ class EventService {
       return response.data as IEvent
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -119,7 +119,7 @@ class EventService {
       return updatedResponse.data;
     } catch (error: any) {
       console.log(error);
-      throw new Error(error?.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   };
 
@@ -145,7 +145,7 @@ class EventService {
       // return updatedResponse;
     } catch (error: any) {
       console.log(error);
-      throw new Error(error?.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   };
 

@@ -3,7 +3,6 @@ import { IResponse } from "../../interface/IResponse";
 import IUserSlice from "../../interface/Redux/IUserSlice";
 
 const BACKEND_URL = import.meta.env.VITE_API_URL;
-
 export class AuthService {
   apiUrl: string;
 
@@ -18,15 +17,21 @@ export class AuthService {
    */
   async authenticateUser(mode: string, signupCode?: string) {
     try {
-      if (mode === "signup") {
-        window.location.href = `${this.apiUrl}/google/callback?mode=${mode}&signupCode=${signupCode}`;
+      if (mode === "signup" && signupCode) {
+        const response = (await axios.post(`${this.apiUrl}/authenticate-code`, { code: signupCode })).data as IResponse;
+        if (!response.success) {
+          throw new Error(response.data);
+        }
+        const id = response.data;
+        window.location.href = `${this.apiUrl}/google/callback?mode=${mode}&id=${encodeURIComponent(id)}`;
       } else if (mode === "login") {
         window.location.href = `${this.apiUrl}/google/callback?mode=${mode}`;
       } else {
         throw new Error("Invalid signup mode")
       }
     } catch (error: any) {
-      throw new Error(error.message)
+      console.log({ error })
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -39,8 +44,7 @@ export class AuthService {
       }
       return response?.data as IUserSlice;
     } catch (error: any) {
-      console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 }

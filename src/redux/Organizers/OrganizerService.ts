@@ -25,7 +25,7 @@ export default class OrganizerService {
       return response.data as IOrganizer;
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -43,7 +43,7 @@ export default class OrganizerService {
       return response.data as string;
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -61,7 +61,7 @@ export default class OrganizerService {
       return response.data as [IOrganizer];
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -79,7 +79,7 @@ export default class OrganizerService {
       return response.data as IOrganizer;
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -97,7 +97,7 @@ export default class OrganizerService {
       return response.data as IOrganizer;
     } catch (error: any) {
       console.log({ error })
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 }

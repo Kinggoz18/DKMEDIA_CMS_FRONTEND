@@ -13,7 +13,7 @@ function App(): JSX.Element {
   return (
     <Provider store={rootStore}>
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/auth" element={<Login />}></Route>
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<Home />}></Route>
         </Route>

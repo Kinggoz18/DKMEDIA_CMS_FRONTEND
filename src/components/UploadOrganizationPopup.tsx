@@ -41,7 +41,7 @@ export default function UploadOrganizationPopup(props: UploadOrganizationProps) 
 
         const data: IOrganizer = {
           name: organizationName,
-          logo: uploadedImageUrl,
+          logo: uploadedLogoUrl,
         }
 
         const newOrganizer = await organizerService.addOrganizer(data);

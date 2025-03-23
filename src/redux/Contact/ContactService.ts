@@ -23,7 +23,7 @@ export class ContactService {
       }
       return response.data as IContact;
     } catch (error: any) {
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -39,7 +39,7 @@ export class ContactService {
       }
       return response.data as string;
     } catch (error: any) {
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -55,7 +55,7 @@ export class ContactService {
       }
       return response.data as IContact;
     } catch (error: any) {
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 

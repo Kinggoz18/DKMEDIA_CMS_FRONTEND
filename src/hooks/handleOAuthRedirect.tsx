@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
  * @param LoginUser Login user function from redux store
  * @returns void
  */
-const useHandleOAuthRedirect = (handleAuthErrorFunc: () => void) => {
+const useHandleOAuthRedirect = (handleAuthErrorFunc: (errorMsg: string) => void) => {
   const navigate: NavigateFunction = useNavigate();
   const dispatch = useDispatch();
 

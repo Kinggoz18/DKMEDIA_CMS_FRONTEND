@@ -101,7 +101,7 @@ export function SideNavBar(props: NavBarProps): JSX.Element {
    */
   const onLogoutClick = async () => {
     dispatch(LogoutUser());
-    navigate("/login")
+    navigate("/auth")
 
   }
 

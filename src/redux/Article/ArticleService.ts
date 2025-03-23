@@ -20,7 +20,7 @@ export class ArticleService {
       return response.data as IArticle;
     } catch (error: any) {
       console.log(error);
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -33,7 +33,7 @@ export class ArticleService {
       return response.data as string;
     } catch (error: any) {
       console.log(error);
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -46,7 +46,7 @@ export class ArticleService {
       return response.data as IArticle;
     } catch (error: any) {
       console.log(error);
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 
@@ -59,7 +59,7 @@ export class ArticleService {
       return response.data as [IArticle];
     } catch (error: any) {
       console.log(error);
-      throw new Error(error.message)
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
 }
