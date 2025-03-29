@@ -8,6 +8,7 @@ import Notfound404 from './pages/404Page'
 import { Provider } from 'react-redux'
 import rootStore from './redux/rootStore'
 
+//TODO: Make sure all dates are stored in ISO format
 function App(): JSX.Element {
 
   return (
