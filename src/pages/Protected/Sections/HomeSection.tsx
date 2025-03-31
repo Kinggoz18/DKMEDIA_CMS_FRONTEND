@@ -12,7 +12,7 @@ export default function HomeSection() {
 
   const [isDeletePopup, setIsDeletePopup] = useState(false);
   const [eventToDelete, setEventToDelete] = useState("");
-  const [isAddEventPopup, setIsAddEventPopup] = useState(false);
+  // const [isAddEventPopup, setIsAddEventPopup] = useState(false);
   const [allEvents, setAllEvents] = useState<[IEvent]>([{
     _id: "",
     title: "",

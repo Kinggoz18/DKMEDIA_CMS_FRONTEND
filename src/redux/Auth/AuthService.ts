@@ -47,4 +47,17 @@ export class AuthService {
       throw new Error(error?.response?.data?.data ?? error?.message ?? error)
     }
   }
+
+  async logoutUser() {
+    try {
+      const response = (await axios.get(`${this.apiUrl}/`)).data as IResponse;
+      console.log({ response })
+      if (!response.success) {
+        throw new Error(response.data);
+      }
+      return response?.data as IUserSlice;
+    } catch (error: any) {
+      throw new Error(error?.response?.data?.data ?? error?.message ?? error)
+    }
+  }
 }

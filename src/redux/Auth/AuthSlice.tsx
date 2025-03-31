@@ -18,11 +18,11 @@ const authSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginUser(state, action) {
+    loginUser(_state, action) {
       return action.payload;
     },
-    logoutUser(state, action) {
-      state = initialState;
+    logoutUser(state, _action) {
+      return state;
     }
   }
 })
@@ -33,7 +33,7 @@ const authSlice = createSlice({
  * @returns 
  */
 export function LoginUser(userId: string): any {
-  return async function LoginUserThunk(dispatch: Dispatch<UnknownAction>, getState: any) {
+  return async function LoginUserThunk(dispatch: Dispatch<UnknownAction>, _getState: any) {
     try {
       const user = await authService.getAuthenticatedUser(userId);
       dispatch(authSlice.actions.loginUser(user));
@@ -51,7 +51,9 @@ export function LoginUser(userId: string): any {
  * @returns 
  */
 export function LogoutUser(): any {
-  return function LogoutUserThunk(dispatch: Dispatch<UnknownAction>) {
+  return async function LogoutUserThunk(dispatch: Dispatch<UnknownAction>,  _getState: any) {
+    const response = await authService.logoutUser();
+    console.log({ response })
     localStorage.removeItem("user");
     dispatch(authSlice.actions.logoutUser(null))
   }

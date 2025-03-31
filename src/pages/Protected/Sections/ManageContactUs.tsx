@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import ContactUsProps from "../../../interface/ContactUsProps";
 import ConfirmComponent from "../../../components/ConfirmComponent";
 import PrimaryButton from "../../../components/PrimaryButton";
 import ThrowAsyncError, { toggleError } from "../../../components/ThrowAsyncError";
@@ -17,7 +16,7 @@ export default function ManageContactUs() {
   const [isDeletePopup, setIsDeletePopup] = useState(false);
   const [inquiryToDelete, setInquiryToDelete] = useState("");
 
-  const [isUploading, setIsUploading] = useState(false);
+  const [isUploading, _setIsUploading] = useState(false);
   const errorRef = useRef<HTMLDivElement>(null);
   const [responseError, setResponseError] = useState("");
   const [contactInfo, setContactInfo] = useState<IContact>({

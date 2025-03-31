@@ -8,7 +8,6 @@ import IMedia from "../interface/Redux/IMedia";
 
 export default function UploadMediaPopup(props: UploadMediaProps) {
   const { closePopup, handleThrowError, mediaService, setIsUploading, fetchAllMedia } = props;
-  const [mediaLogo, setMediaLogo] = useState("");
   const [selectedType, setSelectedType] = useState<mediaType>(mediaType.Default);
 
   const [uploadedMedia, setUploadedMedia] = useState<File>();

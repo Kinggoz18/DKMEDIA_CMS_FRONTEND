@@ -7,7 +7,6 @@ export default function Events(props: EventsProps) {
     title,
     date,
     image,
-    priority,
     organizer,
     isUpcoming,
     onDeleteClick, } = props;

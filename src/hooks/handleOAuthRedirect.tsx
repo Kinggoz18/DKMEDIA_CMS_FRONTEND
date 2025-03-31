@@ -33,7 +33,7 @@ const useHandleOAuthRedirect = (handleAuthErrorFunc: (errorMsg: string) => void)
       }
 
     } catch (error: any) {
-      // handleAuthErrorFunc(erroMsg);
+      handleAuthErrorFunc(error?.message);
       console.log({ error })
     }
   };

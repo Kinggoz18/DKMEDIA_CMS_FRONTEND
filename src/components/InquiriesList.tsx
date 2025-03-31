@@ -17,7 +17,7 @@ export function ContactUsInquiriesList(props: ContactUsInquiriesProps) {
       key={element?._id}
       lastName={element?.lastName}
       firstName={element?.firstName}
-      subject={element.subject}
+      subject={element?.subject}
       company={element?.company}
       email={element?.email}
       phone={element?.phone}

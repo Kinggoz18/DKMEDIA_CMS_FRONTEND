@@ -6,7 +6,7 @@ export default interface ContactUsProps {
   subject: string,
   company?: string;
   email: string;
-  phone: string;
+  phone?: string;
   message: string;
   onDeleteClick?: () => void;
 }
