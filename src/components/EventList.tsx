@@ -14,6 +14,8 @@ export function EventList(props: RenderEventsProps) {
     onDeleteClick,
   } = props;
 
+  if (allEvents.length <= 0) return <div>No {isUpcomingSection ? "upcoming" : "previous"} events</div>
+
   return <>{
     allEvents.map((element, index) => {
       const isUpcoming = new Date(element.date).getTime() > new Date().getTime();
@@ -28,6 +30,7 @@ export function EventList(props: RenderEventsProps) {
         priority={element?.priority}
         organizer={element?.organizer}
         isUpcoming={isUpcoming}
+        ticketLink={element?.ticketLink}
         onDeleteClick={() => onDeleteClick(element?._id ?? "")}
       />
     })

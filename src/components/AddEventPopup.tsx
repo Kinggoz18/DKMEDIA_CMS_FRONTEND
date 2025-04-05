@@ -24,6 +24,7 @@ export default function AddEventPopup(props: AddEventPopupProps) {
   const [eventDate, setEventDate] = useState("");
   const [uploadedImage, setUploadedImage] = useState<File>();
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [ticketLink, setTicketLink] = useState("");
   const [eventPriority, setEventPriority] = useState<EventPriority>(EventPriority.default);
   const [selectedOrganizer, setSelectedOrganizer] = useState<IOrganizer>({ _id: "", name: "", logo: "" })
 
@@ -95,7 +96,6 @@ export default function AddEventPopup(props: AddEventPopupProps) {
   /**
    * Check if the form is valid
    */
-
   const isFormValid = (): boolean => {
     if (eventTitle == "" ||
       eventDate == "" ||
@@ -118,6 +118,12 @@ export default function AddEventPopup(props: AddEventPopupProps) {
         return;
       }
 
+      if (!isValidURL(ticketLink)) {
+        setIsUploading(false)
+        handleThrowError("Please enter a valid URL")
+        return;
+      }
+
       if (!uploadedImage || eventPriority === EventPriority.default) {
         setIsUploading(false)
         handleThrowError("Fill in all the missing fields")
@@ -137,6 +143,7 @@ export default function AddEventPopup(props: AddEventPopupProps) {
         image: imageResponse,
         priority: eventPriority,
         organizer: selectedOrganizer,
+        ticketLink: ticketLink,
       };
       await eventService.addEvent(data);
       await fetchEvents();
@@ -147,6 +154,18 @@ export default function AddEventPopup(props: AddEventPopupProps) {
       setIsUploading(false)
       handleThrowError(error?.message)
       closePopup();
+    }
+  }
+
+  /**
+  * Check if the url is valid
+  */
+  function isValidURL(input: string) {
+    try {
+      new URL(input);
+      return true;
+    } catch (error) {
+      return false;
     }
   }
 
@@ -181,6 +200,19 @@ export default function AddEventPopup(props: AddEventPopupProps) {
             placeholder={"Event date and time"}
             value={eventDate}
             onChange={(e) => setEventDate(e.target.value)}
+            className="outline-none focus:outline-none py-2 px-7 w-full min-w-[100px] overflow-x-scroll border-1 border-solid rounded-2xl bg-neutral-100 text-neutral-900 font-semibold"
+          />
+        </div>
+
+        {/***************** Event ticket link *************************/}
+        <div className="flex flex-col gap-y-1">
+          <label htmlFor="TicketLink" className="font-semibold text-lg">Ticket link</label>
+          <input
+            name="TicketLink"
+            type="url"
+            placeholder={"Event ticket link"}
+            value={ticketLink}
+            onChange={(e) => setTicketLink(e.target.value)}
             className="outline-none focus:outline-none py-2 px-7 w-full min-w-[100px] overflow-x-scroll border-1 border-solid rounded-2xl bg-neutral-100 text-neutral-900 font-semibold"
           />
         </div>

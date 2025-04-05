@@ -8,6 +8,7 @@ export default interface IEvent {
   image: string;
   priority: EventPriority;
   organizer: IOrganizer;
+  ticketLink: string
 }
 
 export interface IEventUpdate {
@@ -17,4 +18,5 @@ export interface IEventUpdate {
   image?: string;
   priorit?: EventPriority;
   organizer?: IOrganizer;
+  ticketLink?: string;
 }

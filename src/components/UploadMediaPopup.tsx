@@ -21,7 +21,10 @@ export default function UploadMediaPopup(props: UploadMediaProps) {
   async function onUploadClick() {
     setIsUploading(true);
     console.log("Uploading media")
-    if (!uploadedMedia) return;
+    if (!uploadedMedia) {
+      setIsUploading(false)
+      return
+    };
 
     if (uploadedMedia?.type.includes("video/") && selectedType !== mediaType.Video) {
       handleThrowError("Please select the correct media type or upload the correct meida");
@@ -105,7 +108,7 @@ export default function UploadMediaPopup(props: UploadMediaProps) {
     let isFileLarge = false;
     //Check the media size 
     if (selectedType === mediaType.Image) {
-      if (fileSize > 10) {
+      if (fileSize > 50) {
         handleThrowError("Image file is too large.");
         setUploadedMedia(undefined);
         setUploadedMediaUrl("");

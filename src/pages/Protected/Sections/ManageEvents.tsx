@@ -28,6 +28,7 @@ export default function ManageEvents() {
     date: "",
     image: "",
     priority: EventPriority.Regular,
+    ticketLink: "",
     organizer: {
       name: "",
       logo: "",

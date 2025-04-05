@@ -9,5 +9,6 @@ export default interface EventsProps {
   priority: EventPriority;
   organizer: OrganizerProps;
   isUpcoming: boolean;
+  ticketLink: string
   onDeleteClick?: () => void;
 }
