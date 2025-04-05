@@ -23,9 +23,9 @@ export class AuthService {
           throw new Error(response.data);
         }
         const id = response.data;
-        window.location.replace(`${this.apiUrl}/google/callback?mode=${mode}&id=${encodeURIComponent(id)}`);
+        window.location.assign(`${this.apiUrl}/google/callback?mode=${mode}&id=${encodeURIComponent(id)}`);
       } else if (mode === "login") {
-        window.location.replace(`${this.apiUrl}/google/callback?mode=${mode}`);
+        window.location.assign(`${this.apiUrl}/google/callback?mode=${mode}`);
       } else {
         throw new Error("Invalid signup mode")
       }
