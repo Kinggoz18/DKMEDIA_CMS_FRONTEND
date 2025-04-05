@@ -51,7 +51,7 @@ export function LoginUser(userId: string): any {
  */
 export function LogoutUser(): any {
   return async function LogoutUserThunk(dispatch: Dispatch<UnknownAction>,  _getState: any) {
-    const response = await authService.logoutUser();
+    await authService.logoutUser();
     localStorage.removeItem("user");
     dispatch(authSlice.actions.logoutUser(null))
   }

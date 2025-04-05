@@ -11,7 +11,7 @@ export default function HomeSection() {
   const eventService = new EventService();
 
   const [isDeletePopup, setIsDeletePopup] = useState(false);
-  const [eventToDelete, setEventToDelete] = useState("");
+  const [_eventToDelete, setEventToDelete] = useState("");
   // const [isAddEventPopup, setIsAddEventPopup] = useState(false);
   const [allEvents, setAllEvents] = useState<[IEvent]>([{
     _id: "",
