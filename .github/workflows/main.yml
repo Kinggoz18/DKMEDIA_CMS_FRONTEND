@@ -31,7 +31,7 @@ jobs:
           SOURCE: "./dist/"
           REMOTE_HOST: ${{ secrets.VPS_HOST }}
           REMOTE_USER: ${{ secrets.VPS_USER }}
-          TARGET: "/var/www/dkmedia-admin" # Update to actual path
+          TARGET: "/var/www/dkmedia-admin" 
           ARGS: "-az --delete"
 
       - name: Restart Admin Service
