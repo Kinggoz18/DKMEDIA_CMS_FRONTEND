@@ -19,8 +19,6 @@ const useHandleOAuthRedirect = (handleAuthErrorFunc: (errorMsg: string) => void)
       const authId = queryParams.get("authId");
       const erroMsg = queryParams.get("erroMsg");
 
-      console.log({ authId, erroMsg });
-
       if (erroMsg) {
         throw new Error(erroMsg)
       }

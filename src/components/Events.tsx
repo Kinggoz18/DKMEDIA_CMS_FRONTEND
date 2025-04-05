@@ -17,7 +17,6 @@ export default function Events(props: EventsProps) {
   const datetime = date;
   const [newDate, time] = datetime.split("T");
 
-  console.log({ newDate, time })
   return (
     <div className='relative h-[250px] min-w-[250px] bg-neutral-100'>
       <div className="h-full w-full bg-neutral-900/50 absolute z-10 text-neutral-50 p-4 gap-y-4 flex flex-col">

@@ -50,7 +50,6 @@ export default function ManageEvents() {
    * Confirm delete event action
    */
   async function onYesDeleteClick() {
-    console.log("Deleting event with id: ", eventToDelete)
     try {
       await eventService.deleteEvent(eventToDelete);
       setIsDeletePopup(false)

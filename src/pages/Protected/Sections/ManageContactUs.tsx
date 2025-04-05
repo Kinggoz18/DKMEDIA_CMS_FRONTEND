@@ -55,7 +55,6 @@ export default function ManageContactUs() {
    * Confirm delete inquiry action
    */
   async function onYesDeleteClick() {
-    console.log("Deleting inquiry with id: ", inquiryToDelete)
     try {
       await contactUsService.deleteContactUsInquiry(inquiryToDelete);
       setIsDeletePopup(false)

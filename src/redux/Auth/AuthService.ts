@@ -38,7 +38,6 @@ export class AuthService {
   async getAuthenticatedUser(userId: string) {
     try {
       const response = (await axios.get(`${this.apiUrl}/${userId}`)).data as IResponse;
-      console.log({ response })
       if (!response.success) {
         throw new Error(response.data);
       }
@@ -51,7 +50,6 @@ export class AuthService {
   async logoutUser() {
     try {
       const response = (await axios.get(`${this.apiUrl}/`)).data as IResponse;
-      console.log({ response })
       if (!response.success) {
         throw new Error(response.data);
       }

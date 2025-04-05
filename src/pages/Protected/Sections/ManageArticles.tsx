@@ -65,8 +65,6 @@ export default function ManageMedia() {
    * Confirm delete article action
    */
   async function onYesDeleteClick() {
-    console.log("Deleting article with id: ", articleToDelete)
-
     try {
       await articleService.deleteArticle(articleToDelete);
       setIsDeletePopup(false)
@@ -102,7 +100,6 @@ export default function ManageMedia() {
    * Upload article
    */
   function onUploadArticleClick() {
-    console.log("Updating contact section")
     setIsUploadArticlePopup(true)
   }
 

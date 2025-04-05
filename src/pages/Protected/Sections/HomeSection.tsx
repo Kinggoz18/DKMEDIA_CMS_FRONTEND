@@ -41,7 +41,6 @@ export default function HomeSection() {
    * Confirm delete event action
    */
   function onYesDeleteClick() {
-    console.log("Deleting event with id: ", eventToDelete)
     setIsDeletePopup(false)
     setEventToDelete("");
   }

@@ -49,7 +49,6 @@ export default function UploadArticlePopup(props: UploadArticleProps) {
         closePopup()
       }
     }
-    console.log("Uploading article")
     closePopup()
   }
 

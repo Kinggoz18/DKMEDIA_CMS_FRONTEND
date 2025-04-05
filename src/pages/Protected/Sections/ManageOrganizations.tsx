@@ -42,7 +42,6 @@ export default function ManageMedia() {
    * Confirm delete organization action
    */
   async function onYesDeleteClick() {
-    console.log("Deleting organization with id: ", organizationToDelete)
     try {
       await organizerService.deleteOrganizer(organizationToDelete);
       setIsDeletePopup(false)
@@ -68,7 +67,6 @@ export default function ManageMedia() {
    * Upload organization
    */
   function onUploadOrganizationClick() {
-    console.log("Updating contact section")
     setIsUploadOrganizationPopup(true)
   }
 

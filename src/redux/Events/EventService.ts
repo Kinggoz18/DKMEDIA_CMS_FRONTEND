@@ -110,7 +110,6 @@ class EventService {
           body: file,
         }
       );
-      console.log({ response })
       const updatedResponse = await response?.json() as IResponse;
       if (!updatedResponse?.success) {
         throw new Error(updatedResponse?.data?.message ?? updatedResponse?.data?.error ?? updatedResponse?.data)

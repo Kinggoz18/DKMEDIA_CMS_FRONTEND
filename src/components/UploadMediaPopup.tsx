@@ -20,7 +20,6 @@ export default function UploadMediaPopup(props: UploadMediaProps) {
    */
   async function onUploadClick() {
     setIsUploading(true);
-    console.log("Uploading media")
     if (!uploadedMedia) {
       setIsUploading(false)
       return
@@ -52,8 +51,6 @@ export default function UploadMediaPopup(props: UploadMediaProps) {
       if (selectedType == mediaType.Image) {
         uploadedMediaUrl = await eventService.saveImageToCloudinary(formData)
       }
-
-      console.log({ uploadedMediaUrl });
 
       if (!uploadedMediaUrl) {
         throw new Error("Something went wrong, while uploading the media to cloudinary");
@@ -135,7 +132,6 @@ export default function UploadMediaPopup(props: UploadMediaProps) {
         if (!fr.result) return;
 
         const blob = new Blob([fr.result]);
-        console.log({ blob });
         const url = URL.createObjectURL(blob);
 
         if (!url) return;
@@ -145,7 +141,6 @@ export default function UploadMediaPopup(props: UploadMediaProps) {
     }
   };
 
-  console.log({ uploadedMediaUrl, uploadedMedia, selectedType })
   return (
     <div className="z-20 grid grid-flow-row justify-center absolute w-[450px] h-fit bg-neutral-200 py-10 gap-3 rounded-2xl font-semibold ml-auto mr-auto left-0 right-0 top-[20vh] text-neutral-900 p-4">
       <div className="absolute top-2 right-4 w-full flex flex-col place-items-end"><Exit onClick={closePopup} /></div>

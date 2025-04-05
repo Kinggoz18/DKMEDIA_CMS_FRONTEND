@@ -41,7 +41,6 @@ export default function ManageMedia() {
    * Confirm delete media action
    */
   async function onYesDeleteClick() {
-    console.log("Deleting media with id: ", mediaToDelete)
     const response = await mediaService.deleteMedia(mediaToDelete);
     setMediaToDelete("");
 
@@ -64,7 +63,6 @@ export default function ManageMedia() {
    * Upload media
    */
   function onUploadMediaClick() {
-    console.log("Updating contact section")
     setIsUploadMediaPopup(true)
   }
 

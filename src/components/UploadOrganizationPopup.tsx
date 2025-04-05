@@ -24,7 +24,6 @@ export default function UploadOrganizationPopup(props: UploadOrganizationProps) 
   * @returns
   */
   async function onUploadClick() {
-    console.log("Uploading organization")
     if (!uploadedImage || organizationName === "") {
       handleThrowError("Please fill in all the required filleds.")
       return;
@@ -88,7 +87,6 @@ export default function UploadOrganizationPopup(props: UploadOrganizationProps) 
       if (!fr.result) return;
 
       const blob = new Blob([fr.result]);
-      console.log({ blob });
       const url = URL.createObjectURL(blob);
 
       if (!url) return;

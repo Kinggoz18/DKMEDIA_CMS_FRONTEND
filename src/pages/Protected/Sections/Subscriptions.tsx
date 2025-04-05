@@ -47,7 +47,6 @@ export default function Subscriptions() {
    * Confirm delete subscription action
    */
   async function onYesDeleteClick() {
-    console.log("Deleting subscription with id: ", subscriptionToDelete)
     const response = await subscriptionService.deleteSubscription(subscriptionToDelete);
     setSubscriptionToDelete("");
 
@@ -75,8 +74,6 @@ export default function Subscriptions() {
   useEffect(() => {
     fetchSubscriptions()
   }, [])
-
-  console.log({ allSubscriptions })
 
   if (allSubscriptions[0]?._id === "") return;
 

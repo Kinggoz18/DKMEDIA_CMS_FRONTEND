@@ -38,7 +38,6 @@ export function LoginUser(userId: string): any {
       const user = await authService.getAuthenticatedUser(userId);
       dispatch(authSlice.actions.loginUser(user));
       localStorage.setItem("user", JSON.stringify(user));
-      console.log({ user });
     } catch (error: any) {
       console.log({ error });
       throw new Error(error.message);
@@ -53,7 +52,6 @@ export function LoginUser(userId: string): any {
 export function LogoutUser(): any {
   return async function LogoutUserThunk(dispatch: Dispatch<UnknownAction>,  _getState: any) {
     const response = await authService.logoutUser();
-    console.log({ response })
     localStorage.removeItem("user");
     dispatch(authSlice.actions.logoutUser(null))
   }

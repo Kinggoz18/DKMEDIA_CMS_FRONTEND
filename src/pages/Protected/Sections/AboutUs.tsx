@@ -38,7 +38,6 @@ export default function AboutUs() {
    */
   async function onYesDeleteClick() {
     const response = await aboutUsService.deleteAboutUs();
-    console.log({ response })
     if (response !== "Deleted about us") {
       handleThrowError("Failed to clear about us")
     }
@@ -91,7 +90,6 @@ export default function AboutUs() {
     if (value === "")
       return;
 
-    console.log({ value })
     setUpdatedData((prevState) => ({
       ...prevState,
       paragraphs: [...prevState.paragraphs, value], // Create a new array
@@ -118,7 +116,6 @@ export default function AboutUs() {
    * Remove updated paragraphs
    */
   function onDeleteParagraph(paragraph: string) {
-    console.log({ paragraph })
     setUpdatedData((prevState) => ({
       ...prevState,
       paragraphs: prevState.paragraphs.filter(s => s !== paragraph),
@@ -141,7 +138,6 @@ export default function AboutUs() {
     fetchAboutUs()
   }, [])
 
-  console.log({ aboutUsData, updatedData })
   return (
     <div className='w-[78vw] relative left-[21vw] h-full flex flex-col gap-10 overflow-y-scroll pb-[10px] p-4'>
       <SectionTitle title="About us" />
