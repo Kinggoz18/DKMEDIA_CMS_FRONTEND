@@ -18,7 +18,6 @@ export default function AddEventPopup(props: AddEventPopupProps) {
 
   const organizerService = new OrganizerService();
   const currentDate = new Date().toISOString().slice(0, 16);
-  console.log({ currentDate });
   const [organziers, setOrganizers] = useState<[IOrganizer]>([{ _id: "", name: "", logo: "" }]);
   const [eventTitle, setEventTitle] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -84,7 +83,6 @@ export default function AddEventPopup(props: AddEventPopupProps) {
       if (!fr.result) return;
 
       const blob = new Blob([fr.result]);
-      console.log({ blob });
       const url = URL.createObjectURL(blob);
 
       if (!url) return;
